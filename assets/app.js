@@ -5,7 +5,7 @@ const CONFIG = {
   frete: { valor: [14.9, 16.9, 19.9, 19.9, 24.9, 24.9, 29.9, 27.9, 12.9, 14.9], prazo: [4, 5, 6, 6, 8, 8, 10, 9, 3, 4], porItemExtra: 3.5 },
   ficha: [["Autora", "Emily Brontë", "autora"], ["Editora", "Novos Ventos", "editora"], ["Formato", "A5 (14,8 × 21 cm)", "formato"], ["Páginas", "348", "paginas"],
     ["Papel", "Chambril 180 g/m²", "papel"], ["Acabamento", "Capa dura com sobrecapa em bordô e dourado", "capa"], ["Itens", "Livro, caixa com ímãs, 4 cards e 4 marca-páginas", "caixa"], ["Tiragem", "Limitada", "tiragem"]],
-  contato: { instagram: "@editoranovosventos", instagramUrl: "https://www.instagram.com/editoranovosventos/", email: "a confirmar" },
+  contato: { instagram: "@editoranovosventos_", instagramUrl: "https://www.instagram.com/editoranovosventos_/", email: "a confirmar" },
   links: { privacidade: "#", termos: "#" }
 };
 document.documentElement.classList.add("js");
