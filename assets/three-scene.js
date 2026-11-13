@@ -120,10 +120,10 @@
   function aplica(o, arr, f, fn = ease) { const [k, u] = seg(f), e = fn(u), A = arr[k], B = arr[k + 1]; o.position.fromArray(lv(A.p, B.p, e)); o.rotation.set(...lv(A.r, B.r, e)); o.scale.setScalar(lerp(A.s, B.s, e)); }
   const num = (arr, f, fn = ease) => { const [k, u] = seg(f); return lerp(arr[k], arr[k + 1], fn(u)); };
   /* interação: arrastar para girar, com inércia */
-  let rot = 0, vel = 0, arrasto = null;
+  let rot = 0, vel = 0, arrasto = null, tBal = 0;
   canvas.addEventListener("pointerdown", e => { arrasto = e.clientX; canvas.setPointerCapture(e.pointerId); canvas.style.cursor = "grabbing"; });
   canvas.addEventListener("pointermove", e => { if (arrasto === null) return; vel = (e.clientX - arrasto) * .006; arrasto = e.clientX; });
-  const solta = () => { arrasto = null; canvas.style.cursor = ""; }; canvas.addEventListener("pointerup", solta); canvas.addEventListener("pointercancel", solta);
+  const solta = () => { arrasto = null; canvas.style.cursor = ""; rot = Math.atan2(Math.sin(rot), Math.cos(rot)); };   // volta pelo caminho mais curto canvas.addEventListener("pointerup", solta); canvas.addEventListener("pointercancel", solta);
   function tamanho() { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
   addEventListener("resize", tamanho); tamanho();
   const alvo = new T.Vector3(), up1 = new T.Vector3(0, 1, 0), up2 = new T.Vector3(0, 0, -1);
@@ -135,9 +135,12 @@
     aplica(livro, L, f); aplica(caixa, C, f); aplica(sobre, S, f); sobre.visible = f < 4.6;
     tampaP.rotation.z = num(tampa, f); abaP.rotation.z = num(aba, Math.min(f, 1) < 1 ? Math.min(1, f * 1.6) : f, salto); piv.rotation.y = num(abre, f);
     cards.forEach((c, i) => { aplica(c, CA[i], f); c.visible = f > 4.45; }); marcs.forEach((m, i) => { aplica(m, MA[i], f); m.visible = f > 5.45; });
-    if (!reduz && arrasto === null && f < .6) vel += .00045 * dt; rot += vel * dt; vel *= Math.pow(.92, dt); mundo.rotation.y = rot;
+    /* sem arrasto, as peças ficam sempre de frente: balanço leve só na caixa fechada e mola que traz de volta depois do giro */
+    rot += vel * dt; vel *= Math.pow(.92, dt); tBal += dt;
+    if (arrasto === null) { const alvoR = !reduz && f < .6 ? Math.sin(tBal * .014) * .32 : 0; rot += (alvoR - rot) * (1 - Math.pow(.955, dt)); }
+    mundo.rotation.y = rot;
     const [k, u] = seg(f), e = ease(u), cp = lv(CAM[k][0], CAM[k + 1][0], e), ct = lv(CAM[k][1], CAM[k + 1][1], e);
-    const fat = Math.max(1, 1.15 / camera.aspect) * (camera.aspect < 1 ? 1.05 : 1); alvo.fromArray(ct);
+    const fat = camera.aspect < 1 ? Math.max(1, 1.15 / camera.aspect) * 1.05 : 1.55;   // no computador a câmera fica mais longe, com a peça inteira alvo.fromArray(ct);
     camera.position.set(ct[0] + (cp[0] - ct[0]) * fat, ct[1] + (cp[1] - ct[1]) * fat, ct[2] + (cp[2] - ct[2]) * fat);
     camera.up.copy(up1).lerp(up2, k === 6 ? e : k === 7 ? 1 : 0).normalize(); camera.lookAt(alvo);
     renderer.render(scene, camera);
