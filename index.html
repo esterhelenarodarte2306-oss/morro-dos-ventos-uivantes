@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>O Morro dos Ventos Uivantes</title>
+<meta name="description" content="Edição de luxo e limitada de O Morro dos Ventos Uivantes, de Emily Brontë, pela Editora Novos Ventos.">
+<meta name="theme-color" content="#0E0B0A">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="pular" href="#historia">Pular para o conteúdo</a>
+<svg id="defs-ar" width="0" height="0" aria-hidden="true" style="position:absolute"></svg>
+<canvas class="vento-global" id="vento-global" aria-hidden="true"></canvas>
+
+<header class="topo" id="topo">
+  <a href="#hero" class="lockup lockup-p" aria-label="Editora Novos Ventos, voltar ao início"><img src="assets/img/logo-nv-bege.webp" alt="" width="34" height="34"><span class="lk"><span class="lk-ed">Editora</span><span class="lk-fio"><i></i></span><span class="lk-nome">Novos Ventos</span></span></a>
+  <button class="btn btn-sm" data-comprar><span class="so-desk">Garantir meu exemplar</span><span class="so-mob">Garantir</span></button>
+</header>
+
+<main>
+<section id="hero" class="hero" aria-label="Abertura">
+  <div class="palco">
+    <div class="camada bege" id="bege">
+      <svg class="ar-faixa ar-e" viewBox="0 0 140 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#ar-faixa"/></svg>
+      <svg class="ar-faixa ar-d" viewBox="0 0 140 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#ar-faixa"/></svg>
+      <canvas class="vento-cv" id="vento-hero" aria-hidden="true"></canvas>
+      <div class="hero-texto" id="hero-texto">
+        <p class="antes">antes assinada como <s>Ellis Bell</s></p>
+        <h1 class="titulo"><span class="emily" id="emily">Emily Brontë</span><svg class="orn" viewBox="0 0 600 60" aria-hidden="true"><use href="#ar-div"/></svg><span class="obra">O Morro dos Ventos Uivantes</span></h1>
+        <p class="linha-ed">Edição de luxo e limitada</p>
+        <div class="acoes"><button class="btn" data-comprar>Garantir meu exemplar</button><a class="btn-s" href="#edicao">Explorar a edição</a></div>
+      </div>
+      <div class="morro-box morro-hero"><svg class="morro-svg" id="morro-hero" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg></div>
+    </div>
+    <div class="camada escura" id="escura" aria-hidden="true">
+      <div class="lamp-det">
+        <svg class="ar-faixa ar-e" viewBox="0 0 140 1000" preserveAspectRatio="xMidYMid slice"><use href="#ar-faixa"/></svg>
+        <svg class="ar-faixa ar-d" viewBox="0 0 140 1000" preserveAspectRatio="xMidYMid slice"><use href="#ar-faixa"/></svg>
+        <svg class="ar-canto c1" viewBox="0 0 200 200"><use href="#ar-canto"/></svg><svg class="ar-canto c2" viewBox="0 0 200 200"><use href="#ar-canto"/></svg>
+      </div>
+      <div class="ellis-bloco" id="ellis-bloco">
+        <p class="ellis"><span id="ellis-nome">Ellis Bell</span></p>
+        <svg class="pincel" id="pincel"></svg>
+        <p class="ano">1847</p>
+        <p class="legenda-risco" id="legenda-risco">O nome na capa não era o dela.</p>
+      </div>
+      <p class="rolar">Role para descobrir<span></span></p>
+    </div>
+    <div class="fibra" id="fibra" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section id="morro" class="cena-morro" aria-labelledby="t-morro">
+  <div class="cena" id="cena">
+    <div class="ceu" id="ceu"></div>
+    <div class="sol" id="sol"></div>
+    <svg class="plano longe" data-prof="0.35" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path id="longe" d="M0 300 C 200 240, 380 280, 560 250 S 900 230, 1200 270 V400 H0Z"/></svg>
+    <div class="plano perto morro-box" data-prof="1"><svg class="morro-svg" id="morro-cena" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg></div>
+    <canvas class="vento-cv" id="vento-cena" aria-hidden="true"></canvas>
+    <div class="frase-m">
+      <h2 id="t-morro" class="vis-oculto">Catherine e Heathcliff no morro</h2>
+      <p class="frase" id="frase"></p>
+      <p class="autoria" id="autoria">Catherine Earnshaw</p>
+    </div>
+    <div class="cena-fim"></div>
+  </div>
+</section>
+
+<section id="historia" class="historia secao-esc">
+  <svg class="divisor" viewBox="0 0 600 60" aria-hidden="true"><use href="#ar-div"/></svg>
+  <svg class="ar-faixa ar-hist" viewBox="0 0 140 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#ar-faixa"/></svg>
+  <div class="hist-grade">
+    <blockquote class="h-cit revela">“Seja lá do que forem feitas as nossas almas, a dele e a minha são iguais.”<cite>Catherine Earnshaw</cite></blockquote>
+    <div class="h-texto revela">
+      <p class="sobretitulo">A história</p>
+      <h2>Um amor que o vento não leva</h2>
+      <p class="capitular">Nas charnecas de Yorkshire, onde o vento nunca para, uma casa isolada guarda a história de Catherine e Heathcliff: dois filhos do mesmo chão, ligados por um amor que não cabe nas regras de ninguém.</p>
+      <p>Emily Brontë escreveu o romance e o publicou em 1847 sob o nome de Ellis Bell. Uma mulher que assinava como homem para ser lida. O livro desconcertou a Inglaterra e hoje é um clássico.</p>
+      <p>Esta edição devolve o nome à autora. A capa, a caixa e cada detalhe foram desenhados para que a beleza e o lado sombrio da história convivam na mesma página.</p>
+    </div>
+    <figure class="etiqueta revela" role="img" aria-label="Etiqueta com o nome Ellis Bell, rasgada, revelando o nome Emily Brontë por baixo.">
+      <div class="et-base"><span class="et-emily">Emily Brontë</span><span class="et-ed">O Morro dos Ventos Uivantes</span></div>
+      <div class="et-topo"><span>Ellis Bell</span><small>Wuthering Heights · 1847</small></div>
+    </figure>
+  </div>
+</section>
+
+<section id="edicao" class="edicao" aria-labelledby="t-edicao">
+  <div class="palco3d">
+    <div class="vista3d">
+      <canvas id="c3d" aria-label="A edição em 3D. Arraste para girar."></canvas>
+      <div class="fallback3d" id="fallback3d" hidden><img src="assets/img/capa-frente.webp" alt="Capa da edição de O Morro dos Ventos Uivantes" loading="lazy"></div>
+    </div>
+    <div class="painel3d">
+      <p class="sobretitulo" id="t-edicao">A edição</p>
+      <h2 id="etapa-titulo">A caixa</h2>
+      <p id="etapa-texto">Revestida em marrom, com ornamentos em foil dourado e uma aba que fecha com ímãs.</p>
+      <button class="btn final3d" data-comprar hidden>Garantir meu exemplar</button>
+      <nav class="atalhos" aria-label="Etapas da edição"></nav>
+    </div>
+  </div>
+</section>
+
+<section id="detalhes" class="secao-esc detalhes">
+  <svg class="divisor" viewBox="0 0 600 60" aria-hidden="true"><use href="#ar-div"/></svg>
+  <div class="larg">
+    <p class="sobretitulo">Detalhes da edição</p>
+    <h2>Feita para ser guardada</h2>
+    <ul class="grade-cards" id="grade-det"></ul>
+    <p class="credito">Embalagem por Carol Melo Personalizados.</p>
+  </div>
+</section>
+
+<section id="ficha" class="secao-esc ficha">
+  <svg class="divisor" viewBox="0 0 600 60" aria-hidden="true"><use href="#ar-div"/></svg>
+  <div class="larg">
+    <p class="sobretitulo">Ficha técnica</p>
+    <h2>A edição em números</h2>
+    <ul class="grade-cards ficha-cards" id="ficha-corpo"></ul>
+  </div>
+</section>
+
+<section id="compra" class="secao-esc compra">
+  <svg class="divisor" viewBox="0 0 600 60" aria-hidden="true"><use href="#ar-div"/></svg>
+  <div class="card-compra">
+    <img src="assets/img/capa-frente.webp" alt="Capa da edição" loading="lazy" width="300" height="426">
+    <div>
+      <p class="sobretitulo">Garanta o seu</p>
+      <h2>O Morro dos Ventos Uivantes</h2>
+      <p class="preco" id="preco"></p>
+      <p class="parc" id="parc"></p>
+      <p class="pix" id="pixlinha"></p>
+      <button class="btn" data-comprar>Garantir meu exemplar</button>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="secao-esc faq">
+  <svg class="divisor" viewBox="0 0 600 60" aria-hidden="true"><use href="#ar-div"/></svg>
+  <div class="estreita">
+    <p class="sobretitulo">Perguntas frequentes</p>
+    <h2>Antes de garantir</h2>
+    <div id="faq-lista"></div>
+  </div>
+</section>
+</main>
+
+<footer class="rodape">
+  <svg class="divisor" viewBox="0 0 600 60" aria-hidden="true"><use href="#ar-div"/></svg>
+  <a href="#hero" class="lockup lockup-g" aria-label="Editora Novos Ventos, voltar ao início"><img src="assets/img/logo-nv-bege.webp" alt="" width="76" height="76"><span class="lk"><span class="lk-ed">Editora</span><span class="lk-fio"><i></i></span><span class="lk-nome">Novos Ventos</span></span></a>
+  <p class="marca">Editora Novos Ventos · Clássicos em edições especiais</p>
+  <div class="redes">
+    <a class="redondo" id="l-insta" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r=".6"/></svg><span>Instagram</span></a>
+    <button class="redondo" id="b-mail" type="button"><svg viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12" rx="1.5"/><path d="M4 7l8 6 8-6"/></svg><span>E-mail</span></button>
+  </div>
+  <p class="contato"><span id="insta-txt"></span> · <span id="email-txt"></span> <span id="email-ok" aria-live="polite"></span></p>
+  <p class="linha-pe"><a href="#" id="l-priv">Política de privacidade</a><a href="#" id="l-termos">Termos de uso</a><span>© 2026 Editora Novos Ventos</span><span>Protótipo de demonstração · TGI Unifran</span></p>
+</footer>
+
+<div class="barra" id="barra" aria-hidden="true"><span id="barra-preco"></span><button class="btn btn-sm" data-comprar tabindex="-1">Garantir</button></div>
+
+<dialog class="modal" id="modal" aria-labelledby="m-titulo">
+  <form method="dialog" class="m-caixa" id="m-form" novalidate autocomplete="off">
+    <div class="m-topo"><button type="button" class="m-voltar" id="m-voltar" aria-label="Voltar">‹</button><h2 id="m-titulo">Seu exemplar</h2><button type="button" class="m-fechar" id="m-fechar" aria-label="Fechar">×</button></div>
+    <ol class="passos" aria-label="Etapas da compra"><li class="ativo">Resumo</li><li>Pagamento</li><li>Revisão</li></ol>
+    <div class="m-corpo">
+      <section class="etapa" data-e="1">
+        <div class="resumo"><img src="assets/img/capa-frente.webp" alt="" width="64" height="91"><div><strong id="m-nome"></strong><span id="m-unit"></span></div></div>
+        <label class="campo">Quantidade<select id="qtd"><option>1</option><option>2</option><option>3</option></select></label>
+        <label class="campo">CEP<input id="cep" inputmode="numeric" placeholder="00000-000" maxlength="9" autocomplete="off"><small class="erro" id="cep-erro"></small></label>
+        <p class="frete" id="frete" aria-live="polite"></p>
+        <p class="total" aria-live="polite">Total <strong id="total1"></strong></p>
+      </section>
+      <section class="etapa" data-e="2" hidden>
+        <div class="abas" role="tablist"><button type="button" role="tab" aria-selected="true" data-aba="pix">Pix</button><button type="button" role="tab" aria-selected="false" data-aba="cartao">Cartão</button><button type="button" role="tab" aria-selected="false" data-aba="vista">À vista</button></div>
+        <div class="aba" data-aba="pix" role="tabpanel">
+          <p>Valor no Pix <strong id="pix-valor"></strong> <span class="selo" id="pix-desc"></span></p>
+          <div class="qr" id="qr" aria-label="QR Code decorativo de demonstração" role="img"></div>
+          <label class="campo">Código copia e cola<input id="pix-cod" readonly></label>
+          <button type="button" class="btn-s" id="copiar">Copiar código</button> <span id="copiado" aria-live="polite"></span>
+          <p class="aviso">Demonstração. Este código não realiza pagamento.</p>
+        </div>
+        <div class="aba" data-aba="cartao" role="tabpanel" hidden>
+          <p class="aviso forte">Protótipo acadêmico: nenhum dado é enviado nem salvo. Não digite dados reais.</p>
+          <label class="campo">Número do cartão<input id="cc-num" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off"><span class="bandeira" id="bandeira"></span><small class="erro" id="cc-num-e"></small></label>
+          <label class="campo">Nome impresso<input id="cc-nome" autocomplete="off"><small class="erro" id="cc-nome-e"></small></label>
+          <div class="linha2"><label class="campo">Validade<input id="cc-val" inputmode="numeric" maxlength="5" placeholder="MM/AA" autocomplete="off"><small class="erro" id="cc-val-e"></small></label>
+          <label class="campo">CVV<input id="cc-cvv" inputmode="numeric" maxlength="4" placeholder="000" autocomplete="off"><small class="erro" id="cc-cvv-e"></small></label></div>
+          <label class="campo">Parcelas<select id="parcelas"></select></label>
+        </div>
+        <div class="aba" data-aba="vista" role="tabpanel" hidden>
+          <p>À vista no cartão, em 1x sem juros, <strong id="vista-valor"></strong>.</p>
+          <p class="aviso">Use a aba Cartão para preencher os dados, com a opção 1x selecionada.</p>
+          <button type="button" class="btn-s" id="ir-cartao">Preencher cartão em 1x</button>
+        </div>
+      </section>
+      <section class="etapa" data-e="3" hidden>
+        <ul class="revisao" id="revisao"></ul>
+        <p class="total">Total <strong id="total3"></strong></p>
+      </section>
+      <section class="etapa" data-e="4" hidden>
+        <img class="fim-logo" src="assets/img/logo-nv.webp" alt="" width="80" height="80">
+        <p class="fim">Este é um protótipo de demonstração. Nenhuma compra foi realizada. Obrigada por conhecer a edição!</p>
+        <div class="acoes"><button type="button" class="btn" id="fim-fechar">Fechar</button><a class="btn-s" href="#edicao" id="fim-ver">Ver a edição de novo</a></div>
+      </section>
+    </div>
+    <div class="m-rodape"><button type="button" class="btn btn-cheio" id="m-avancar">Continuar</button></div>
+  </form>
+</dialog>
+
+<script src="assets/app.js"></script>
+<script src="assets/js/three.min.js" defer></script>
+<script src="assets/js/texturas3d.js" defer></script>
+<script src="assets/three-scene.js" defer></script>
+</body>
+</html>
