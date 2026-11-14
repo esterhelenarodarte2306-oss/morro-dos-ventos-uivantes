@@ -26,6 +26,10 @@
 <section id="hero" class="hero" aria-label="Abertura">
   <div class="palco">
     <div class="camada bege" id="bege">
+      <div class="ceu" id="ceu"></div>
+      <div class="sol" id="sol"></div>
+      <svg class="plano longe" data-prof="0.35" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path id="longe" d="M0 300 C 200 240, 380 280, 560 250 S 900 230, 1200 270 V400 H0Z"/></svg>
+      <div class="papel" id="papel"></div>
       <svg class="ar-faixa ar-e" viewBox="0 0 140 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#ar-faixa"/></svg>
       <svg class="ar-faixa ar-d" viewBox="0 0 140 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#ar-faixa"/></svg>
       <canvas class="vento-cv" id="vento-hero" aria-hidden="true"></canvas>
@@ -36,6 +40,13 @@
         <div class="acoes"><button class="btn" data-comprar>Garantir meu exemplar</button><a class="btn-s" href="#edicao">Explorar a edição</a></div>
       </div>
       <div class="morro-box morro-hero"><svg class="morro-svg" id="morro-hero" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg></div>
+      <canvas class="vento-cv" id="vento-cena" aria-hidden="true"></canvas>
+      <div class="frase-m">
+        <h2 id="t-morro" class="vis-oculto">Catherine e Heathcliff no morro</h2>
+        <p class="frase" id="frase"></p>
+        <p class="autoria" id="autoria">Catherine Earnshaw</p>
+      </div>
+      <div class="cena-fim" id="cena-fim"></div>
     </div>
     <div class="camada escura" id="escura" aria-hidden="true">
       <div class="lamp-det">
@@ -52,22 +63,6 @@
       <p class="rolar">Role para descobrir<span></span></p>
     </div>
     <div class="fibra" id="fibra" aria-hidden="true"></div>
-  </div>
-</section>
-
-<section id="morro" class="cena-morro" aria-labelledby="t-morro">
-  <div class="cena" id="cena">
-    <div class="ceu" id="ceu"></div>
-    <div class="sol" id="sol"></div>
-    <svg class="plano longe" data-prof="0.35" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path id="longe" d="M0 300 C 200 240, 380 280, 560 250 S 900 230, 1200 270 V400 H0Z"/></svg>
-    <div class="plano perto morro-box" data-prof="1"><svg class="morro-svg" id="morro-cena" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg></div>
-    <canvas class="vento-cv" id="vento-cena" aria-hidden="true"></canvas>
-    <div class="frase-m">
-      <h2 id="t-morro" class="vis-oculto">Catherine e Heathcliff no morro</h2>
-      <p class="frase" id="frase"></p>
-      <p class="autoria" id="autoria">Catherine Earnshaw</p>
-    </div>
-    <div class="cena-fim"></div>
   </div>
 </section>
 

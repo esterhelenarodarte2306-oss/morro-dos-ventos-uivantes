@@ -107,8 +107,8 @@ function folga(svg) {
   const a = ac.getBoundingClientRect(), c = $(".casal-img", svg).getBoundingClientRect(), m = $(".crista", svg).getBoundingClientRect();
   const d = a.bottom + 26 - Math.min(c.top, m.top); if (d > 0) box.style.transform = `translateY(${Math.ceil(d)}px)`;
 }
-const mHero = $("#morro-hero"), mCena = $("#morro-cena");
-morro(mHero, .2, "#30231D", () => clamp(innerWidth * .09, 64, 150)); morro(mCena, .1, "#241914", () => clamp(innerWidth * .11, 84, 175));
+const mHero = $("#morro-hero");
+morro(mHero, .2, "#30231D", () => clamp(innerWidth * .09, 64, 150));
 
 /* ---------- VENTO: folhas em trajetórias curvas e linhas de vento, sempre da esquerda para a direita ---------- */
 const VENTO = { f: 1, alvo: 1 }, CORES_F = ["#80543A", "#5A3A28", "#4D6836", "#304A30", "#B98A45", "#9C6B3F"];
@@ -134,11 +134,10 @@ class Vento {
 const vHero = new Vento($("#vento-hero"), { n: 22, linhas: 4 }), vCena = new Vento($("#vento-cena"), { n: 30, linhas: 5, cor: "244,235,218", alfa: .9 }), vGlobal = new Vento($("#vento-global"), { n: 9, linhas: 2, alfa: .5 });
 vGlobal.on = !reduz;
 new IntersectionObserver(es => es.forEach(e => { e.target === $("#hero") ? vHero.vis = e.isIntersecting : vCena.on = e.isIntersecting; })).observe($("#hero"));
-new IntersectionObserver(es => { vCena.on = es[0].isIntersecting; }).observe($("#morro"));
 if (reduz) { vHero.passo(0); vCena.passo(0); }
 
 /* ---------- HERO: risco de pincel, rasgo, nome da autora e lamparina ---------- */
-const hero = $("#hero"), escura = $("#escura"), fibra = $("#fibra"), bloco = $("#ellis-bloco"), nomeE = $("#ellis-nome"), pincel = $("#pincel"), ellis = $(".ellis"), legenda = $("#legenda-risco"), heroTxt = $("#hero-texto"), emily = $("#emily");
+const hero = $("#hero"), bege = $("#bege"), escura = $("#escura"), fibra = $("#fibra"), bloco = $("#ellis-bloco"), nomeE = $("#ellis-nome"), pincel = $("#pincel"), ellis = $(".ellis"), legenda = $("#legenda-risco"), heroTxt = $("#hero-texto"), emily = $("#emily");
 let PC = null;
 function montaPincel() {
   const b = bloco.getBoundingClientRect(), r = nomeE.getBoundingClientRect(); if (!r.width) return;
@@ -162,7 +161,7 @@ function montaPincel() {
 const N = 64, ruido = Array.from({ length: N + 1 }, (_, i) => 10 * Math.sin(i * .7) + 7 * Math.sin(i * 1.9 + 1) + (aleat() - .5) * 16), banda = Array.from({ length: N + 1 }, () => 4 + aleat() * 9);
 let brilhou = false;
 function quadroHero() {
-  const p = prog(hero), W = innerWidth, H = innerHeight, tr = clamp((p - .12) / .26);
+  const s = clamp(-hero.getBoundingClientRect().top / innerHeight, 0, 9), p = clamp(s / 2), W = innerWidth, H = innerHeight, tr = clamp((p - .12) / .26);
   if (PC) PC.r.setAttribute("width", f1(PC.L * (reduz ? (tr > 0 ? 1 : 0) : tr)));
   ellis.style.color = tr > .6 ? "#8C7B68" : ""; legenda.classList.toggle("on", p > .27);
   const t = clamp((p - .38) / .32);
@@ -175,18 +174,23 @@ function quadroHero() {
     escura.style.clipPath = `polygon(${a})`; fibra.style.clipPath = `polygon(${f})`; }
   const rev = reduz ? (p > .5 ? 1 : 0) : clamp((p - .7) / .14); emily.style.setProperty("--rev", f1(rev * 100 / 100)); heroTxt.classList.toggle("on", p > .68 || (reduz && p > .5));
   if (rev >= 1 && !brilhou) { brilhou = true; emily.classList.add("brilho"); }
-  vHero.on = vHero.vis !== false && p > .58 && !reduz;
+  /* a cena continua no mesmo morro: o nome sobe e some, o papel dá lugar ao céu e a frase de Catherine se escreve */
+  const u1 = reduz ? (s > 2.4 ? 1 : 0) : clamp((s - 2.15) / .45), u2 = reduz ? (s > 2.5 ? 1 : 0) : clamp((s - 2.35) / .5);
+  heroTxt.style.transform = u1 ? `translateY(${(-u1 * 26).toFixed(2)}vh)` : ""; heroTxt.style.opacity = u1 ? (1 - u1).toFixed(3) : ""; heroTxt.style.pointerEvents = u1 > .5 ? "none" : "";
+  bege.style.setProperty("--papel", (1 - u2).toFixed(3));
+  quadroCena(clamp((s - 2.45) / 1.95));
+  vHero.on = vHero.vis !== false && p > .58 && s < 2.9 && !reduz; vCena.on = vHero.vis !== false && s > 2.35 && !reduz;
 }
 hero.addEventListener("pointermove", e => { escura.style.setProperty("--lx", e.clientX + "px"); escura.style.setProperty("--ly", e.clientY + "px"); });
 
 /* ---------- CENA DO MORRO: o sol desce com a rolagem, a frase de Catherine se escreve ---------- */
-const cenaSec = $("#morro"), ceu = $("#ceu"), sol = $("#sol"), frase = $("#frase"), autoria = $("#autoria"), planos = $$("[data-prof]", cenaSec);
+const cenaSec = hero, ceu = $("#ceu"), sol = $("#sol"), frase = $("#frase"), autoria = $("#autoria"), planos = $$("[data-prof]", cenaSec);
 const pal = ["“Seja", "lá", "do", "que", "forem", "feitas", "as", "nossas", "almas,", "a", "dele", "e", "a", "minha", "são", "iguais.”"];
 frase.innerHTML = pal.map((w, i) => `<span class="p${i >= pal.length - 2 ? " fim" : ""}">${w}</span>`).join(" "); const pals = $$(".p", frase);
 const CEU = [[[70, 85, 122], [217, 154, 98], [240, 201, 142]], [[46, 45, 74], [180, 97, 63], [227, 154, 90]], [[23, 19, 31], [107, 47, 51], [181, 82, 47]]];
 const mix = (a, b, u) => a.map((v, i) => Math.round(v + (b[i] - v) * u)), rgb = c => `rgb(${c.join(",")})`;
-function quadroCena() {
-  const p = prog(cenaSec), k = p < .5 ? 0 : 1, u = p < .5 ? p / .5 : (p - .5) / .5, c = [0, 1, 2].map(i => mix(CEU[k][i], CEU[k + 1][i], u));
+function quadroCena(p) {
+  const k = p < .5 ? 0 : 1, u = p < .5 ? p / .5 : (p - .5) / .5, c = [0, 1, 2].map(i => mix(CEU[k][i], CEU[k + 1][i], u));
   ceu.style.background = `linear-gradient(180deg,${rgb(c[0])} 0%,${rgb(c[1])} 58%,${rgb(c[2])} 100%)`; sol.style.top = f1(20 + 48 * p) + "%";
   const n = Math.floor(clamp((p - .1) / .62) * pals.length + .001); pals.forEach((s, i) => s.classList.toggle("on", reduz ? p > .1 : i < n));
   pals.slice(-2).forEach(s => s.classList.toggle("acesa", p > .8)); autoria.classList.toggle("on", p > .84); vCena.mult = 1 + 1.6 * p;
@@ -203,13 +207,13 @@ function quadroBarra() { const on = hero.getBoundingClientRect().bottom < innerH
   barra.classList.toggle("on", on); barra.setAttribute("aria-hidden", !on); $("button", barra).tabIndex = on ? 0 : -1; topo.classList.toggle("rolado", scrollY > 20); }
 let uy = scrollY, ut = performance.now();
 addEventListener("scroll", () => { const n = performance.now(), v = Math.abs(scrollY - uy) / Math.max(8, n - ut); VENTO.alvo = Math.min(4, 1 + v * 1.6); uy = scrollY; ut = n; }, { passive: true });
-function ajusta() { montaPincel(); [mHero, mCena].forEach(posiciona); [vHero, vCena, vGlobal].forEach(v => v.tam()); }
+function ajusta() { montaPincel(); [mHero].forEach(posiciona); [vHero, vCena, vGlobal].forEach(v => v.tam()); }
 addEventListener("resize", ajusta); if (document.fonts) document.fonts.ready.then(ajusta); else ajusta(); montaPincel();
 let t0 = performance.now();
 function loop(now) {
   const dt = Math.min(3, (now - t0) / 16.7); t0 = now; VENTO.f += (VENTO.alvo - VENTO.f) * .08; VENTO.alvo += (1 - VENTO.alvo) * .04;
   document.documentElement.style.setProperty("--vento", f1(VENTO.f));
-  quadroHero(); quadroCena(); quadroBarra();
+  quadroHero(); quadroBarra();
   if (!reduz) [vHero, vCena, vGlobal].forEach(v => { if (v.on) v.passo(dt); });
   requestAnimationFrame(loop);
 }

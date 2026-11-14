@@ -57,7 +57,7 @@ a{color:var(--ouro2)}
 @media(min-width:700px){.ar-e{left:4px}.ar-d{right:4px}}
 .divisor{display:block;width:min(420px,72vw);height:auto;margin:0 auto 28px}
 /* ---------- HERO ---------- */
-.hero{height:300vh;position:relative;background:var(--negativo)}
+.hero{height:560vh;position:relative;background:var(--negativo)}
 .palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .camada{position:absolute;inset:0}
 .escura{background:var(--negativo);color:var(--bege2);display:grid;place-items:center;will-change:clip-path;--lx:50%;--ly:62%}
@@ -76,9 +76,12 @@ a{color:var(--ouro2)}
 .rolar span{display:block;width:1px;height:38px;margin:10px auto 0;background:linear-gradient(var(--ouro),transparent);animation:desce 1.8s infinite}
 @keyframes desce{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .fibra{position:absolute;inset:0;background:var(--bege2);pointer-events:none;filter:drop-shadow(0 6px 6px rgba(14,11,10,.35))}
-.bege{background:var(--bege) url(img/papel.webp) center/cover;overflow:hidden;color:var(--carvao)}
+.bege{background:var(--fundo);overflow:hidden;color:var(--carvao);--papel:1}
+.papel{position:absolute;inset:0;background:var(--bege) url(img/papel.webp) center/cover;opacity:var(--papel)}
+.bege>.ar-faixa{opacity:var(--papel)}
+.bege .cena-fim{opacity:calc(1 - var(--papel))}
 .vento-cv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.hero-texto{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:calc(56px + 8vh + var(--sat)) 22px 0}
+.hero-texto{position:absolute;inset:0;will-change:transform,opacity;display:flex;flex-direction:column;align-items:center;text-align:center;padding:calc(56px + 8vh + var(--sat)) 22px 0}
 .hero-texto>*{opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
 .hero-texto.on>*{opacity:1;transform:none}
 .hero-texto.on>:nth-child(2){transition-delay:.05s}.hero-texto.on>:nth-child(3){transition-delay:.5s}.hero-texto.on>:nth-child(4){transition-delay:.65s}
