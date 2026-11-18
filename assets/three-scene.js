@@ -46,10 +46,7 @@
   const bordaPag = (vertical) => ctex(256, 256, (g, w, h) => { g.fillStyle = "#EFE4CF"; g.fillRect(0, 0, w, h); for (let i = 0; i < 256; i += 2) { g.fillStyle = `rgba(120,95,70,${.05 + Math.random() * .12})`; vertical ? g.fillRect(i, 0, 1, h) : g.fillRect(0, i, w, 1); } });
   const pagLado = bordaPag(true), pagTopo = bordaPag(false);
   let fontesOk = document.fonts ? document.fonts.load('80px "Cinzel Decorative"').then(() => document.fonts.load('40px "EB Garamond"')) : Promise.resolve();
-  const abertura = ctex(740, 1050, (g, w, h, t) => fontesOk.then(() => { g.fillStyle = "#F6EEDD"; g.fillRect(0, 0, w, h); g.fillStyle = "#6B2230"; g.textAlign = "center";
-    g.font = '120px "Cinzel Decorative", serif'; g.fillText("I", w / 2, 300); g.font = '34px "Cinzel", serif'; g.fillStyle = "#30231D"; g.fillText("CAPÍTULO I", w / 2, 380);
-    g.strokeStyle = "#D0A34E"; g.lineWidth = 2; g.beginPath(); g.moveTo(w / 2 - 70, 420); g.lineTo(w / 2 + 70, 420); g.stroke();
-    g.fillStyle = "rgba(48,35,29,.28)"; for (let y = 520; y < h - 90; y += 34) { const l = y > h - 160 ? .5 : 1; g.fillRect(90, y, (w - 180) * l * (.9 + Math.random() * .1), 9); } t.needsUpdate = true; }));
+  /* páginas reais do miolo (abertura do Volume I e capítulo I), tiradas do PDF da diagramação */
   const guarda = ctex(740, 1050, (g, w, h, t) => { g.fillStyle = "#E9D8B8"; g.fillRect(0, 0, w, h); g.strokeStyle = "#80543A"; g.lineWidth = 3; g.strokeRect(46, 46, w - 92, h - 92); g.lineWidth = 1; g.strokeRect(62, 62, w - 124, h - 124);
     const im = new Image(); im.onload = () => { const s = 260; g.globalAlpha = .9; g.drawImage(im, (w - s) / 2, (h - s * im.height / im.width) / 2, s, s * im.height / im.width); t.needsUpdate = true; }; im.src = TEX.nv; });
   /* placa com cantos arredondados e chanfro: frente e verso com textura própria */
@@ -66,8 +63,8 @@
   const mGuarda = std({ map: guarda, roughness: .8 });
   const tras = placa(W, H, EC, 0.22, mGuarda, std({ map: tex("contracapa"), roughness: .55 }), borda); tras.position.z = -(E / 2 - EC / 2); livro.add(tras);
   const piv = new T.Group(); piv.position.set(-W / 2, 0, E / 2 - EC / 2); livro.add(piv);
-  const frente = placa(W, H, EC, 0.22, std({ map: tex("capa"), roughness: .55 }), mGuarda, borda); frente.position.x = W / 2; piv.add(frente);
-  const pag = new T.Mesh(new T.BoxGeometry(W - 0.4, H - 0.5, E - 2 * EC - 0.14), [std({ map: pagLado, roughness: .9 }), std({ map: pagLado, roughness: .9 }), std({ map: pagTopo, roughness: .9 }), std({ map: pagTopo, roughness: .9 }), std({ map: abertura, roughness: .85 }), std({ color: 0xF2E8D5, roughness: .9 })]);
+  const frente = placa(W, H, EC, 0.22, std({ map: tex("capa"), roughness: .55 }), std({ map: tex("pag10"), roughness: .8 }), borda); frente.position.x = W / 2; piv.add(frente);
+  const pag = new T.Mesh(new T.BoxGeometry(W - 0.4, H - 0.5, E - 2 * EC - 0.14), [std({ map: pagLado, roughness: .9 }), std({ map: pagLado, roughness: .9 }), std({ map: pagTopo, roughness: .9 }), std({ map: pagTopo, roughness: .9 }), std({ map: tex("pag11"), roughness: .85 }), std({ color: 0xF2E8D5, roughness: .9 })]);
   pag.position.x = 0.1; livro.add(pag);
   const lomb = new T.Mesh(new T.BoxGeometry(0.3, H, E), [borda, std({ map: tex("lombada"), roughness: .55 }), borda, borda, borda, borda]); lomb.position.x = -W / 2 - 0.12; livro.add(lomb);
   /* sobrecapa (filha do livro): frente, verso, lombada e a dobra da orelha */
